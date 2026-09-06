@@ -539,6 +539,19 @@ input{font:inherit}
 }
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
 .toast button{color:var(--ember);text-decoration:underline;margin-left:8px}
+
+.cero{
+  width:100%;margin-top:14px;padding:11px;
+  background:transparent;border:1px solid var(--line);border-radius:var(--r-s);
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-3);
+  transition:all .15s ease;
+}
+.cero:hover{border-color:var(--gold);color:var(--gold)}
+.cero.armado{
+  border-color:var(--gold);color:#241703;background:var(--gold);
+  font-weight:600;
+}
 </style>
 </head>
 <body>
@@ -850,7 +863,8 @@ function ts(){ return Math.max(1, Math.floor(Date.now() / 1000)); }
 /* marks[clave] = sello  →  positivo: serie hecha · negativo: serie desmarcada.
    Guardar el sello (y no un simple 1) permite fusionar dos dispositivos que
    han entrenado sin conexión: para cada serie gana la marca más reciente. */
-let st = { week:1, marks:{}, peso:[], vista:"hoy", sesionIdx:null, updated:0 };
+let st = { week:1, marks:{}, peso:[], vista:"hoy", sesionIdx:null, updated:0,
+           inicio:null, semanaDesde:null };
 
 try{
   const raw = localStorage.getItem(KEY);
@@ -861,6 +875,35 @@ try{
   }
 }catch(e){}
 delete st.done;
+
+function hoyISO(){ return new Date().toISOString().slice(0, 10); }
+function diasDesde(iso){
+  if(!iso) return 0;
+  const d = new Date(iso + "T00:00:00");
+  if(isNaN(d)) return 0;
+  return Math.max(0, Math.floor((Date.now() - d.getTime()) / 86400000));
+}
+function fechaLarga(iso){
+  const d = new Date(iso + "T00:00:00");
+  if(isNaN(d)) return iso;
+  return d.toLocaleDateString("es-ES", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+}
+
+/* Borrón y cuenta nueva: semana 1, sin marcas, y se apunta la fecha de
+   arranque para poder decir por qué día vas sin depender de la memoria. */
+function empezarDeCero(){
+  st.week = 1;
+  st.marks = {};
+  st.peso = [];
+  st.inicio = hoyISO();
+  st.semanaDesde = st.inicio;
+  st.sesionIdx = null;
+  save();
+}
+
+/* Reinicio único al actualizar desde una versión que aún no guardaba la
+   fecha de inicio. A partir de aquí el borrado siempre es a botón. */
+if(!st.inicio) empezarDeCero();
 
 /* persist: solo escribe en el disco del navegador.
    save: además sella el estado como modificado, que es lo que decide
@@ -893,7 +936,13 @@ function merge(remoto){
   const unidos = [...porFecha.values()].sort((a, b) => a.t < b.t ? -1 : 1);
   if(unidos.length !== (st.peso || []).length){ st.peso = unidos; cambio = true; }
   if((remoto.updated || 0) > (st.updated || 0) && remoto.week && remoto.week !== st.week){
-    st.week = remoto.week; cambio = true;
+    st.week = remoto.week;
+    st.semanaDesde = remoto.semanaDesde || st.semanaDesde;
+    cambio = true;
+  }
+  /* la fecha de arranque real es la más antigua de las dos */
+  if(remoto.inicio && (!st.inicio || remoto.inicio < st.inicio)){
+    st.inicio = remoto.inicio; cambio = true;
   }
   return cambio;
 }
@@ -936,7 +985,20 @@ function vHoy(){
   const entrenosSem = f.dias.filter(d => d.tipo !== "r").length;
   const regla = REGLAS[(st.week + di) % REGLAS.length];
 
+  const diasSemana = diasDesde(st.semanaDesde);
+  const tocaAvanzar = diasSemana >= 7 && st.week < 52;
+
   return `
+  ${tocaAvanzar ? `
+  <div class="install">
+    <span class="t">
+      <b>Han pasado ${diasSemana} días en la semana ${st.week}</b>
+      <span>Cuando la des por terminada, pasa a la ${st.week + 1}.</span>
+    </span>
+    <button class="go" data-w="si">Semana ${st.week + 1}</button>
+    <button class="x" data-w="no" aria-label="Seguir en esta semana">×</button>
+  </div>` : ""}
+
   ${inst.disponible() ? `
   <div class="install">
     <span class="t">
@@ -1225,6 +1287,17 @@ function vProgreso(){
     <div class="tile"><span class="k">Sesiones</span><span class="v">${hechas}</span></div>
   </div>
 
+  ${st.inicio ? `
+  <div class="sec">
+    <div class="card" style="padding:13px 15px">
+      <p class="note" style="margin:0;font-size:13px">
+        Empezaste el <b>${esc(fechaLarga(st.inicio))}</b>.
+        Llevas ${diasDesde(st.inicio) + 1} ${diasDesde(st.inicio) === 0 ? "día" : "días"},
+        y ${diasDesde(st.semanaDesde) + 1} en la semana ${st.week}.
+      </p>
+    </div>
+  </div>` : ""}
+
   <div class="sec">
     <p class="eyebrow">Tus datos</p>
     <div class="card">
@@ -1237,6 +1310,7 @@ function vProgreso(){
       </div>
       <textarea class="pegar" id="zonaPegar" placeholder="Pega aquí los datos copiados del otro dispositivo y toca «Pegar datos» otra vez." spellcheck="false"></textarea>
       <p class="aviso" id="avisoDatos"></p>
+      <button class="cero" data-z="1" id="btnCero">Empezar de cero</button>
     </div>
   </div>
 
@@ -1364,8 +1438,13 @@ function go(v){ st.vista = v; render(); window.scrollTo({top:0, behavior:"instan
 document.getElementById("nav").addEventListener("click", e => {
   const b = e.target.closest("button[data-go]"); if(b) go(b.dataset.go);
 });
-document.getElementById("wkUp").addEventListener("click", () => { if(st.week < 52){ st.week++; render(); } });
-document.getElementById("wkDown").addEventListener("click", () => { if(st.week > 1){ st.week--; render(); } });
+/* al mover la semana a mano, la cuenta de días de esa semana arranca de nuevo */
+document.getElementById("wkUp").addEventListener("click", () => {
+  if(st.week < 52){ st.week++; st.semanaDesde = hoyISO(); save(); render(); }
+});
+document.getElementById("wkDown").addEventListener("click", () => {
+  if(st.week > 1){ st.week--; st.semanaDesde = hoyISO(); save(); render(); }
+});
 
 document.querySelector(".app").addEventListener("click", e => {
   const open = e.target.closest("[data-open]");
@@ -1392,6 +1471,36 @@ document.querySelector(".app").addEventListener("click", e => {
 
   const rest = e.target.closest("[data-rest]");
   if(rest){ startTimer(parseInt(rest.dataset.rest, 10)); return; }
+
+  const wk = e.target.closest("[data-w]");
+  if(wk){
+    if(wk.dataset.w === "si" && st.week < 52) st.week++;
+    st.semanaDesde = hoyISO();   /* en ambos casos: el aviso no vuelve hasta dentro de 7 días */
+    save(); render();
+    return;
+  }
+
+  /* borra el historial, así que va a dos toques */
+  const z = e.target.closest("[data-z]");
+  if(z){
+    if(z.classList.contains("armado")){
+      empezarDeCero();
+      render();
+      toast("Listo: semana 1, historial vacío.");
+    }else{
+      z.classList.add("armado");
+      z.textContent = "Toca otra vez para borrarlo todo";
+      datos.aviso("Se borran series y pesos. Descarga antes una copia si quieres.", true);
+      setTimeout(() => {
+        if(z.isConnected && z.classList.contains("armado")){
+          z.classList.remove("armado");
+          z.textContent = "Empezar de cero";
+          datos.aviso("");
+        }
+      }, 6000);
+    }
+    return;
+  }
 
   const ins = e.target.closest("[data-i]");
   if(ins){
@@ -1485,7 +1594,8 @@ function toast(texto, accion){
 const datos = {
   empaquetar(){
     return JSON.stringify({ app:"52-semanas-de-hierro", v:1, week:st.week,
-                            marks:st.marks, peso:st.peso, updated:st.updated });
+                            marks:st.marks, peso:st.peso, updated:st.updated,
+                            inicio:st.inicio, semanaDesde:st.semanaDesde });
   },
   nombre(){
     return "52-semanas-" + new Date().toISOString().slice(0,10) + ".json";

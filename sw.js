@@ -3,7 +3,7 @@
 
    Sube el numero de VERSION cada vez que cambies index.html: al detectarlo,
    la app te ofrece actualizar en un aviso abajo y el cache viejo se borra. */
-const VERSION = "v1";
+const VERSION = "v2";
 const CACHE = "hierro52-" + VERSION;
 
 /* El esqueleto de la app: sin esto no arranca offline. */
