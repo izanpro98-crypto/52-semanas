@@ -1,0 +1,1585 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>52 Semanas de Hierro</title>
+<meta name="description" content="Plan de entrenamiento en casa de 12 meses con dos mancuernas de 8 kg.">
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#131010">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="52 Semanas">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#131010;
+  --surface:#1C1817;
+  --surface-2:#262120;
+  --surface-3:#312A28;
+  --line:#332C2A;
+  --line-soft:#241F1E;
+  --ink:#F4EEE7;
+  --ink-2:#B3A49A;
+  --ink-3:#7C6D66;
+  --ember:#F2603C;
+  --ember-dim:#8E3722;
+  --ember-wash:rgba(242,96,60,.13);
+  --sage:#79B8A4;
+  --sage-wash:rgba(121,184,164,.12);
+  --gold:#E8B44A;
+  --shell:min(480px,100%);
+  --nav-h:66px;
+  --pad:18px;
+  --r-s:8px;
+  --r-m:14px;
+  --r-l:20px;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#0B0908;
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+input{font:inherit}
+:focus-visible{outline:2px solid var(--ember);outline-offset:2px;border-radius:4px}
+
+/* ---------- shell ---------- */
+.app{
+  width:var(--shell);
+  margin:0 auto;
+  min-height:100vh;
+  background:var(--bg);
+  border-left:1px solid var(--line-soft);
+  border-right:1px solid var(--line-soft);
+  position:relative;
+  overflow-x:hidden;
+}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:rgba(19,16,16,.93);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  padding:14px var(--pad) 12px;
+  display:flex;align-items:center;gap:12px;
+}
+.brand{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.brand b{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 118;
+  font-weight:800;font-size:15px;letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.brand span{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);text-transform:uppercase;
+}
+.wkstep{
+  display:flex;align-items:center;gap:2px;
+  background:var(--surface-2);border:1px solid var(--line);
+  border-radius:99px;padding:3px;
+}
+.wkstep button{
+  width:26px;height:26px;border-radius:99px;color:var(--ink-2);
+  font-size:16px;line-height:1;display:grid;place-items:center;
+}
+.wkstep button:hover{background:var(--surface-3);color:var(--ink)}
+.wkstep .val{
+  font-family:var(--f-mono);font-size:11px;font-weight:600;
+  padding:0 7px;letter-spacing:.02em;white-space:nowrap;
+}
+.wkstep .val em{color:var(--ink-3);font-style:normal}
+
+/* ---------- views ---------- */
+.view{display:none;padding:20px var(--pad) calc(var(--nav-h) + 34px)}
+.view.on{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view.on{animation:none}*{transition:none!important}}
+
+/* ---------- type ---------- */
+.h1{
+  font-family:var(--f-display);font-variation-settings:"wdth" 120;
+  font-weight:800;font-size:29px;line-height:1.02;letter-spacing:-.01em;
+  text-transform:uppercase;text-wrap:balance;margin:0;
+}
+.h2{
+  font-family:var(--f-display);font-variation-settings:"wdth" 115;
+  font-weight:700;font-size:17px;letter-spacing:.02em;
+  text-transform:uppercase;margin:0;
+}
+.eyebrow{
+  font-family:var(--f-mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 9px;
+}
+.eyebrow.ember{color:var(--ember)}
+.lede{color:var(--ink-2);margin:8px 0 0;font-size:14px;max-width:62ch}
+.sec{margin-top:30px}
+.sec:first-child{margin-top:0}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-m);padding:16px;
+}
+.stack{display:flex;flex-direction:column;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+
+.tile{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-m);padding:12px 11px;
+  display:flex;flex-direction:column;gap:4px;
+}
+.tile .k{
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.tile .v{
+  font-family:var(--f-display);font-variation-settings:"wdth" 115;
+  font-weight:800;font-size:22px;line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.tile .v small{font-size:12px;font-weight:600;color:var(--ink-3)}
+
+/* ---------- hero session card ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  border-radius:var(--r-l);border:1px solid var(--line);
+  background:
+    radial-gradient(120% 100% at 100% 0%, rgba(242,96,60,.22), transparent 62%),
+    linear-gradient(180deg,var(--surface-2),var(--surface));
+  padding:18px;
+}
+.hero.rest{
+  background:
+    radial-gradient(120% 100% at 100% 0%, rgba(121,184,164,.18), transparent 62%),
+    linear-gradient(180deg,var(--surface-2),var(--surface));
+}
+.hero .tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ember);
+  background:var(--ember-wash);border:1px solid rgba(242,96,60,.3);
+  padding:4px 9px;border-radius:99px;
+}
+.hero.rest .tag{color:var(--sage);background:var(--sage-wash);border-color:rgba(121,184,164,.3)}
+.hero h3{
+  font-family:var(--f-display);font-variation-settings:"wdth" 122;
+  font-weight:800;font-size:30px;line-height:1;letter-spacing:-.005em;
+  text-transform:uppercase;margin:13px 0 6px;text-wrap:balance;
+}
+.hero p{color:var(--ink-2);margin:0;font-size:13.5px}
+.hero .facts{
+  display:flex;gap:16px;margin-top:14px;padding-top:14px;
+  border-top:1px solid var(--line);
+}
+.hero .facts div{display:flex;flex-direction:column;gap:2px}
+.hero .facts .k{
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.hero .facts .v{font-family:var(--f-mono);font-size:14px;font-weight:600}
+
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;margin-top:16px;padding:13px;
+  background:var(--ember);color:#1A0B06;
+  border-radius:var(--r-s);
+  font-family:var(--f-display);font-variation-settings:"wdth" 115;
+  font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+  transition:filter .15s ease,transform .1s ease;
+}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:scale(.99)}
+.btn.ghost{
+  background:transparent;border:1px solid var(--line);color:var(--ink-2);
+}
+.btn.ghost:hover{border-color:var(--ink-3);color:var(--ink)}
+
+/* ---------- week strip ---------- */
+.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.strip button{
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  padding:10px 2px 9px;border-radius:var(--r-s);
+  border:1px solid var(--line);background:var(--surface);
+  transition:border-color .15s ease,background .15s ease;
+}
+.strip button:hover{border-color:var(--ink-3)}
+.strip button.today{border-color:var(--ember);background:var(--ember-wash)}
+.strip .d{
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;
+  color:var(--ink-2);text-transform:uppercase;
+}
+.strip .dot{width:7px;height:7px;border-radius:99px;background:var(--surface-3)}
+.strip .dot.f{background:var(--ember)}
+.strip .dot.c{background:var(--sage)}
+.strip .dot.done{box-shadow:0 0 0 3px rgba(232,180,74,.28);background:var(--gold)}
+
+/* ---------- day rows (plan) ---------- */
+.day{
+  display:flex;align-items:center;gap:13px;width:100%;text-align:left;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-m);padding:13px 14px;
+  transition:border-color .15s ease;
+}
+.day:hover{border-color:var(--ink-3)}
+.day .rail{width:3px;align-self:stretch;border-radius:99px;background:var(--surface-3)}
+.day.f .rail{background:var(--ember)}
+.day.c .rail{background:var(--sage)}
+.day .lbl{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);width:26px;flex-shrink:0;
+}
+.day .mid{flex:1;min-width:0}
+.day .mid b{
+  display:block;font-family:var(--f-display);font-variation-settings:"wdth" 113;
+  font-weight:700;font-size:14.5px;letter-spacing:.02em;text-transform:uppercase;
+}
+.day .mid span{font-size:12.5px;color:var(--ink-3)}
+.day .arw{color:var(--ink-3);font-size:17px;flex-shrink:0}
+.day .chk{
+  font-family:var(--f-mono);font-size:10px;color:var(--gold);
+  letter-spacing:.1em;flex-shrink:0;
+}
+
+/* ---------- exercise card ---------- */
+.ex{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-m);overflow:hidden;
+}
+.ex.complete{border-color:rgba(232,180,74,.42)}
+.ex > .head{
+  display:flex;align-items:flex-start;gap:11px;width:100%;
+  text-align:left;padding:14px;
+}
+.ex .num{
+  font-family:var(--f-mono);font-size:11px;font-weight:600;
+  color:var(--ember);padding-top:2px;width:18px;flex-shrink:0;
+  font-variant-numeric:tabular-nums;
+}
+.ex.complete .num{color:var(--gold)}
+.ex .name{flex:1;min-width:0}
+.ex .name b{
+  display:block;font-size:15px;font-weight:600;line-height:1.28;
+}
+.ex .name .pres{
+  font-family:var(--f-mono);font-size:12px;color:var(--ember);
+  letter-spacing:.02em;margin-top:3px;display:block;
+  font-variant-numeric:tabular-nums;
+}
+.ex .caret{color:var(--ink-3);font-size:12px;padding-top:4px;transition:transform .2s ease}
+.ex.open .caret{transform:rotate(180deg)}
+
+.sets{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 13px 43px}
+.sets button{
+  width:34px;height:32px;border-radius:var(--r-s);
+  border:1px solid var(--line);background:var(--surface-2);
+  font-family:var(--f-mono);font-size:11px;font-weight:600;color:var(--ink-3);
+  transition:all .13s ease;
+}
+.sets button:hover{border-color:var(--ink-3);color:var(--ink-2)}
+.sets button.on{
+  background:var(--gold);border-color:var(--gold);color:#241703;
+}
+.sets .rest{
+  width:auto;padding:0 11px;color:var(--sage);
+  border-color:rgba(121,184,164,.28);background:var(--sage-wash);
+  margin-left:auto;letter-spacing:.02em;
+}
+.sets .rest:hover{border-color:var(--sage);color:var(--sage)}
+
+.ex .body{display:none;padding:0 14px 15px 43px}
+.ex.open .body{display:block}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.meta span{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;
+  color:var(--ink-2);background:var(--surface-2);
+  border:1px solid var(--line);border-radius:99px;padding:4px 9px;
+}
+.note{margin:0 0 10px;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.note b{color:var(--ink);font-weight:600}
+.note.up{
+  padding:10px 12px;background:var(--ember-wash);
+  border-left:2px solid var(--ember);border-radius:0 var(--r-s) var(--r-s) 0;
+  color:var(--ink-2);margin-bottom:0;
+}
+.note.up b{
+  display:block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ember);margin-bottom:4px;font-weight:500;
+}
+
+/* ---------- generic list ---------- */
+.rows{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden}
+.rows .r{
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  background:var(--surface);padding:11px 14px;
+}
+.rows .r span{color:var(--ink-2);font-size:13.5px}
+.rows .r b{
+  font-family:var(--f-mono);font-size:12.5px;font-weight:600;
+  white-space:nowrap;font-variant-numeric:tabular-nums;
+}
+.rows .r b.em{color:var(--ember)}
+
+/* ---------- ladder ---------- */
+.ladder{position:relative;padding-left:26px}
+.ladder::before{
+  content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;
+  background:linear-gradient(180deg,var(--ember-dim),var(--line));
+}
+.ladder .step{position:relative;padding:6px 0}
+.ladder .step::before{
+  content:"";position:absolute;left:-23px;top:12px;
+  width:9px;height:9px;border-radius:99px;
+  background:var(--bg);border:1.5px solid var(--ink-3);
+}
+.ladder .step.now::before{background:var(--ember);border-color:var(--ember)}
+.ladder .step b{font-size:14px;font-weight:600;display:block}
+.ladder .step span{font-size:12.5px;color:var(--ink-3)}
+
+/* ---------- phase timeline ---------- */
+.phase{
+  display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line-soft);
+}
+.phase:last-child{border-bottom:none}
+.phase .idx{
+  font-family:var(--f-display);font-variation-settings:"wdth" 122;
+  font-weight:800;font-size:26px;line-height:1;color:var(--surface-3);
+  font-variant-numeric:tabular-nums;width:40px;flex-shrink:0;
+}
+.phase.live .idx{color:var(--ember)}
+.phase .c b{
+  font-family:var(--f-display);font-variation-settings:"wdth" 115;
+  font-weight:700;font-size:16px;letter-spacing:.02em;text-transform:uppercase;
+  display:block;
+}
+.phase .c .wk{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);text-transform:uppercase;margin:2px 0 7px;display:block;
+}
+.phase .c p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.phase .c .split{
+  display:inline-block;margin-top:8px;
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;
+  color:var(--ink-2);background:var(--surface-2);
+  border:1px solid var(--line);border-radius:99px;padding:3px 9px;
+}
+
+/* ---------- chart ---------- */
+.chart{width:100%;height:110px;display:block}
+.logrow{display:flex;gap:8px;margin-top:12px}
+.logrow input{
+  flex:1;min-width:0;background:var(--surface-2);border:1px solid var(--line);
+  color:var(--ink);border-radius:var(--r-s);padding:11px 12px;
+  font-family:var(--f-mono);font-size:13px;
+}
+.logrow input::placeholder{color:var(--ink-3)}
+.logrow button{
+  padding:0 16px;background:var(--surface-3);border:1px solid var(--line);
+  border-radius:var(--r-s);font-family:var(--f-mono);font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink);
+}
+.logrow button:hover{background:var(--ember);color:#1A0B06;border-color:var(--ember)}
+
+/* ---------- disclaimer ---------- */
+.warn{
+  border:1px solid rgba(232,180,74,.3);background:rgba(232,180,74,.07);
+  border-radius:var(--r-m);padding:13px 15px;
+}
+.warn b{
+  display:block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:6px;
+}
+.warn p{margin:0;font-size:13px;color:var(--ink-2);line-height:1.55}
+
+/* ---------- sync ---------- */
+.sync{
+  width:32px;height:32px;flex-shrink:0;border-radius:99px;
+  border:1px solid var(--line);background:var(--surface-2);
+  display:grid;place-items:center;color:var(--ink-3);
+  transition:color .2s ease,border-color .2s ease;
+}
+.sync svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sync[data-s="ok"]{color:var(--sage);border-color:rgba(121,184,164,.35)}
+.sync[data-s="saving"]{color:var(--ember);border-color:rgba(242,96,60,.4)}
+.sync[data-s="saving"] svg{animation:pulse 1.1s ease-in-out infinite}
+.sync[data-s="local"]{color:var(--ink-3)}
+.sync[data-s="err"]{color:var(--gold);border-color:rgba(232,180,74,.4)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.sync[data-s="saving"] svg{animation:none}}
+
+.syncrow{
+  display:flex;align-items:center;gap:11px;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-m);padding:14px;
+}
+.syncrow .led{width:9px;height:9px;border-radius:99px;background:var(--ink-3);flex-shrink:0}
+.syncrow.ok .led{background:var(--sage);box-shadow:0 0 0 4px var(--sage-wash)}
+.syncrow.saving .led{background:var(--ember);box-shadow:0 0 0 4px var(--ember-wash)}
+.syncrow.err .led{background:var(--gold)}
+.syncrow .t{flex:1;min-width:0}
+.syncrow .t b{display:block;font-size:14px;font-weight:600}
+.syncrow .t span{font-size:12.5px;color:var(--ink-3)}
+
+/* ---------- bottom nav ---------- */
+.nav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:var(--shell);z-index:50;
+  background:rgba(19,16,16,.95);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(5,1fr);
+  padding:9px 6px calc(9px + env(safe-area-inset-bottom,0px));
+}
+.nav button{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  padding:4px 0;color:var(--ink-3);
+  font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  transition:color .15s ease;
+}
+.nav button svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nav button.on{color:var(--ember)}
+.nav button:hover{color:var(--ink-2)}
+
+/* ---------- timer sheet ---------- */
+.sheet{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(110%);
+  width:var(--shell);z-index:60;
+  background:var(--surface);border-top:1px solid var(--ember);
+  border-radius:var(--r-l) var(--r-l) 0 0;
+  padding:20px var(--pad) calc(24px + env(safe-area-inset-bottom,0px));
+  transition:transform .28s cubic-bezier(.3,.9,.3,1);
+  box-shadow:0 -20px 50px rgba(0,0,0,.5);
+}
+.sheet.up{transform:translateX(-50%) translateY(0)}
+.sheet .lab{
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);text-align:center;
+}
+.sheet .clock{
+  font-family:var(--f-display);font-variation-settings:"wdth" 120;
+  font-weight:800;font-size:62px;line-height:1;text-align:center;
+  font-variant-numeric:tabular-nums;margin:8px 0 4px;color:var(--ember);
+}
+.sheet .bar{height:3px;background:var(--surface-3);border-radius:99px;overflow:hidden;margin:14px 0 16px}
+.sheet .bar i{display:block;height:100%;background:var(--ember);transition:width 1s linear}
+.sheet .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+.foot{
+  text-align:center;margin-top:26px;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;
+  color:var(--ink-3);text-transform:uppercase;
+}
+
+/* ---------- instalación y datos ---------- */
+.install{
+  display:flex;align-items:center;gap:12px;
+  border:1px solid rgba(242,96,60,.35);background:var(--ember-wash);
+  border-radius:var(--r-m);padding:13px 14px;margin-bottom:20px;
+}
+.install .t{flex:1;min-width:0}
+.install .t b{display:block;font-size:14px;font-weight:600}
+.install .t span{font-size:12.5px;color:var(--ink-2)}
+.install .go{
+  flex-shrink:0;background:var(--ember);color:#1A0B06;border-radius:var(--r-s);
+  padding:9px 14px;font-family:var(--f-display);font-variation-settings:"wdth" 112;
+  font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+}
+.install .x{flex-shrink:0;color:var(--ink-3);font-size:18px;padding:0 2px}
+
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.btns button{
+  padding:11px 8px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:var(--r-s);font-family:var(--f-mono);font-size:11px;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);
+  transition:border-color .15s ease,color .15s ease;
+}
+.btns button:hover{border-color:var(--ember);color:var(--ember)}
+.pegar{
+  width:100%;margin-top:8px;min-height:76px;resize:vertical;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-s);
+  color:var(--ink);padding:10px 12px;font-family:var(--f-mono);font-size:11px;
+  display:none;
+}
+.pegar.on{display:block}
+.aviso{
+  margin-top:10px;font-family:var(--f-mono);font-size:11px;
+  letter-spacing:.03em;color:var(--sage);min-height:15px;
+}
+.aviso.mal{color:var(--gold)}
+
+.toast{
+  position:fixed;left:50%;bottom:calc(var(--nav-h) + 16px);
+  transform:translateX(-50%) translateY(20px);
+  z-index:70;opacity:0;pointer-events:none;
+  background:var(--surface-3);border:1px solid var(--line);
+  border-radius:99px;padding:10px 18px;
+  font-family:var(--f-mono);font-size:11.5px;letter-spacing:.04em;
+  box-shadow:0 12px 30px rgba(0,0,0,.5);
+  transition:opacity .22s ease,transform .22s ease;
+  max-width:calc(var(--shell) - 40px);text-align:center;
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.toast button{color:var(--ember);text-decoration:underline;margin-left:8px}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <b>52 Semanas de Hierro</b>
+      <span id="phaseLabel">Fase 1 · Fundamentos</span>
+    </div>
+    <div class="wkstep">
+      <button id="wkDown" aria-label="Semana anterior">−</button>
+      <div class="val">SEM <span id="wkNum">1</span><em>/52</em></div>
+      <button id="wkUp" aria-label="Semana siguiente">+</button>
+    </div>
+  </header>
+
+  <!-- ============ HOY ============ -->
+  <section class="view on" id="v-hoy"></section>
+
+  <!-- ============ PLAN ============ -->
+  <section class="view" id="v-plan"></section>
+
+  <!-- ============ SESIÓN ============ -->
+  <section class="view" id="v-sesion"></section>
+
+  <!-- ============ EJERCICIOS ============ -->
+  <section class="view" id="v-ejercicios"></section>
+
+  <!-- ============ COMIDA ============ -->
+  <section class="view" id="v-comida"></section>
+
+  <!-- ============ PROGRESO ============ -->
+  <section class="view" id="v-progreso"></section>
+
+</div>
+
+<nav class="nav" id="nav">
+  <button data-go="hoy" class="on">
+    <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Hoy</button>
+  <button data-go="plan">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Plan</button>
+  <button data-go="ejercicios">
+    <svg viewBox="0 0 24 24"><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12"/></svg>Fichas</button>
+  <button data-go="comida">
+    <svg viewBox="0 0 24 24"><path d="M5 3v8a3 3 0 006 0V3M8 11v10"/><path d="M17 3c-1.5 2-2 4-2 6s.5 3 2 3 2-1 2-3-.5-4-2-6zM17 12v9"/></svg>Comida</button>
+  <button data-go="progreso">
+    <svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 20v-6M12 20V7M18 20v-9"/></svg>Progreso</button>
+</nav>
+
+<div class="sheet" id="sheet">
+  <div class="lab">Descanso entre series</div>
+  <div class="clock" id="clock">1:30</div>
+  <div class="bar"><i id="bar" style="width:100%"></i></div>
+  <div class="acts">
+    <button class="btn ghost" style="margin:0" id="tPlus">+15 s</button>
+    <button class="btn" style="margin:0" id="tStop">Listo</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<input type="file" id="ficheroIn" accept="application/json,.json" hidden>
+
+<script>
+"use strict";
+
+/* ==================================================================
+   DATOS DEL PROGRAMA
+   Perfil: 16 años · 66,5 kg · casa · 2 mancuernas regulables 8 kg
+   Objetivo: recomposición (menos grasa, más músculo) a 12 meses
+   ================================================================== */
+
+const CAL = "Movilidad de tobillo, cadera y hombro + 2 min de saltos suaves. 6 minutos, sin prisa.";
+
+const S = {}; /* banco de sesiones */
+
+/* ---------- FASE 1 · Full body ---------- */
+S.A = {
+  id:"A", tipo:"f", nombre:"Cuerpo completo · A", foco:"Empuje y base de piernas",
+  dur:"45 min", nivel:"RPE 6-7 · deja 3 reps en recámara",
+  ex:[
+    { n:"Sentadilla goblet", p:"4 × 10-12", rest:90, tempo:"3-1-1", carga:"1 mancuerna al pecho · 8 kg",
+      cue:"El peso reparte tu espalda: sujétala pegada al esternón y baja <b>3 segundos</b> hasta que los muslos pasen la paralela. Rodillas hacia fuera, talones clavados, torso alto.",
+      up:"Cuando hagas 12 limpias en las 4 series, pasa a tempo 4-2-1. Cuando eso también salga, coge las dos mancuernas apoyadas en los hombros." },
+    { n:"Flexiones", p:"4 × dejar 2 en recámara", rest:90, tempo:"2-0-1", carga:"Peso corporal",
+      cue:"Cuerpo en tabla rígida: glúteo y abdomen apretados. Codos a <b>45°</b>, no abiertos en cruz. El pecho toca el suelo, no la barbilla.",
+      up:"Escalera: rodillas → normales → tempo 4 s → pies en una silla → arqueras. Sube de peldaño cuando llegues a 15 reps limpias." },
+    { n:"Peso muerto rumano", p:"4 × 12", rest:90, tempo:"3-0-1", carga:"2 × 8 kg",
+      cue:"No es una sentadilla: la cadera va <b>hacia atrás</b>, las rodillas casi fijas. Mancuernas rozando el muslo. Bajas hasta que notes tirar de los isquios y ahí paras.",
+      up:"Con 12 fáciles, pasa a tempo 4-1-1 y luego a la versión a una pierna." },
+    { n:"Press militar de pie", p:"3 × 10-12", rest:75, tempo:"2-0-1", carga:"2 × 8 kg",
+      cue:"Aprieta glúteo y abdomen <b>antes</b> de empujar: si no, la lumbar hace de bisagra. Las mancuernas suben hasta que los brazos tapan las orejas.",
+      up:"Después de 12 limpias: press con pausa de 2 s arriba, luego press Arnold, luego a una mano." },
+    { n:"Remo a una mano", p:"3 × 12 por lado", rest:60, tempo:"2-1-2", carga:"1 × 8 kg",
+      cue:"Mano y rodilla en una silla, espalda plana como una mesa. Tira <b>con el codo</b>, no con la mano, y aprieta la escápula 1 s arriba.",
+      up:"Baja la mancuerna 3 s en cada rep antes de pensar en más peso. El tiempo bajo tensión es tu peso extra." },
+    { n:"Plancha frontal", p:"3 × 40 s", rest:45, tempo:"Isométrico", carga:"Peso corporal",
+      cue:"Codos bajo los hombros, pelvis metida, glúteo apretado. Si la lumbar se hunde, se acabó la serie.",
+      up:"A los 60 s, cambia a plancha con una mancuerna encima de la espalda o a plancha con toques de hombro." }
+  ]
+};
+
+S.B = {
+  id:"B", tipo:"f", nombre:"Cuerpo completo · B", foco:"Tracción y trabajo unilateral",
+  dur:"45 min", nivel:"RPE 6-7 · deja 3 reps en recámara",
+  ex:[
+    { n:"Sentadilla búlgara", p:"4 × 10 por pierna", rest:90, tempo:"3-0-1", carga:"2 × 8 kg",
+      cue:"Empeine trasero en el sofá, pie delantero a un paso largo. <b>Todo el peso en la pierna de delante</b>: la de atrás solo equilibra. Baja hasta que la rodilla trasera roce el suelo.",
+      up:"Es tu ejercicio estrella: con 8 kg por mano y una sola pierna, cargas de verdad sin barra. Luego súbelo a déficit poniendo el pie delantero en un libro grueso." },
+    { n:"Remo inclinado a dos manos", p:"4 × 12", rest:90, tempo:"2-1-2", carga:"2 × 8 kg",
+      cue:"Bisagra de cadera hasta 45°, espalda neutra, mirada al suelo un metro por delante. Las mancuernas viajan hacia la <b>cadera</b>, no hacia el pecho.",
+      up:"Pausa de 2 s en el punto alto de cada rep. Después, remo con una pausa y bajada de 4 s." },
+    { n:"Zancadas atrás", p:"3 × 12 por pierna", rest:75, tempo:"2-0-1", carga:"2 × 8 kg",
+      cue:"Da el paso <b>hacia atrás</b>, no hacia delante: la rodilla sufre menos y el glúteo trabaja más. Torso vertical todo el rato.",
+      up:"Cuando 12 sean cómodas, hazlas caminando por el pasillo, sin descanso entre piernas." },
+    { n:"Fondos de tríceps en silla", p:"3 × 10-15", rest:60, tempo:"3-0-1", carga:"Peso corporal",
+      cue:"Manos en el borde de la silla, hombros <b>abajo y atrás</b>. Baja hasta que el codo haga 90° y ni un grado más: por debajo el hombro se resiente.",
+      up:"Pies apoyados y doblados → piernas estiradas → pies en otra silla → con una mancuerna en el regazo." },
+    { n:"Superserie: curl + press francés", p:"3 × 12 + 12", rest:60, tempo:"2-0-2", carga:"2 × 8 kg",
+      cue:"Curl sin balanceo: si la espalda ayuda, el bíceps descansa. Press francés tumbado, codos apuntando al techo <b>fijos</b>.",
+      up:"Encadénalos sin descanso entre los dos y descansa 60 s al terminar la pareja." },
+    { n:"Hollow hold", p:"3 × 30 s", rest:45, tempo:"Isométrico", carga:"Peso corporal",
+      cue:"Lumbar <b>pegada al suelo</b>: eso manda. Si se despega, sube brazos y piernas hasta que vuelva a pegarse.",
+      up:"A los 45 s pasa a hollow rock, y luego estira los brazos por encima de la cabeza." }
+  ]
+};
+
+S.C = {
+  id:"C", tipo:"f", nombre:"Cuerpo completo · C", foco:"Cadera, hombro y core",
+  dur:"40 min", nivel:"RPE 7 · el más metabólico de los tres",
+  ex:[
+    { n:"Puente de glúteo a una pierna", p:"4 × 12 por lado", rest:60, tempo:"2-2-1", carga:"1 × 8 kg en la cadera",
+      cue:"Espalda alta apoyada en el sofá, barbilla al pecho. Sube hasta que el cuerpo forme una línea y <b>aprieta el glúteo 2 s</b> arriba. Si notas el lumbar, has subido de más.",
+      up:"Añade la segunda mancuerna sobre la cadera y luego pausa de 3 s." },
+    { n:"Press en suelo (floor press)", p:"4 × 12", rest:75, tempo:"3-1-1", carga:"2 × 8 kg",
+      cue:"Tumbado, los tríceps tocan el suelo y <b>ahí haces una pausa de 1 s</b> antes de empujar. Sin rebote: el suelo no es un trampolín.",
+      up:"Press a una mano (el core tiene que frenar la rotación) y luego press con las dos pero alternando." },
+    { n:"Remo renegado", p:"3 × 8 por lado", rest:75, tempo:"2-1-2", carga:"2 × 8 kg",
+      cue:"En plancha sobre las mancuernas, pies anchos. Rema con un brazo <b>sin que la cadera gire</b>. Si giras, abre más los pies o baja el peso.",
+      up:"Junta los pies. Cuanto más juntos, más antirrotación." },
+    { n:"Elevaciones laterales", p:"3 × 15", rest:45, tempo:"2-1-3", carga:"4-5 kg · ojo, aquí menos es más",
+      cue:"Sube solo hasta la altura del hombro, codos ligeramente doblados, meñique un pelo más alto. <b>Baja en 3 s.</b>",
+      up:"Antes de subir peso, sube el tempo de bajada a 4 s y añade una pausa de 1 s arriba." },
+    { n:"Y-T-W boca abajo", p:"3 × 12", rest:45, tempo:"1-2-2", carga:"Sin peso o 2 kg",
+      cue:"Tumbado boca abajo, despega los brazos dibujando una Y, luego una T, luego una W. Es el <b>seguro del hombro</b> frente a tanto empuje.",
+      up:"Añade 2 kg por mano solo cuando 12 salgan con pausa de 2 s arriba." },
+    { n:"Circuito de core", p:"3 rondas", rest:60, tempo:"Continuo", carga:"Peso corporal",
+      cue:"Escaladores 30 s → dead bug 10 por lado → plancha lateral 25 s por lado. Sin descanso dentro de la ronda, 60 s entre rondas.",
+      up:"Sube a 4 rondas antes de alargar los tiempos." }
+  ]
+};
+
+/* ---------- FASE 2 · Torso / Pierna ---------- */
+S.SUPA = {
+  id:"SUPA", tipo:"f", nombre:"Tren superior · Empuje", foco:"Pecho, hombro y tríceps",
+  dur:"50 min", nivel:"RPE 7-8 · deja 2 reps en recámara",
+  ex:[
+    { n:"Flexiones con pies elevados", p:"4 × 8-12", rest:105, tempo:"3-1-1", carga:"Pies en una silla",
+      cue:"Cuanto más altos los pies, más carga va al hombro y al pecho superior. Pausa de 1 s abajo, sin dejarte caer.",
+      up:"De la silla a la mesa, y de ahí a flexiones arqueras." },
+    { n:"Press militar de pie", p:"4 × 8-10", rest:105, tempo:"2-1-1", carga:"2 × 8 kg",
+      cue:"Ya vas cerca del techo de tus mancuernas: exprímelo con pausa de 1 s en la parte baja y sin ningún impulso de piernas.",
+      up:"Cuando 10 sean fáciles, pásate al press a una mano: mismo peso, el doble de exigencia." },
+    { n:"Press en suelo", p:"3 × 10-12", rest:90, tempo:"3-1-1", carga:"2 × 8 kg", cue:"Pausa firme de 1 s con los tríceps en el suelo.", up:"Alterna brazos manteniendo el otro arriba extendido." },
+    { n:"Elevaciones laterales", p:"3 × 15-20", rest:50, tempo:"2-0-3", carga:"5-6 kg", cue:"Series largas y bajada lenta. El hombro lateral crece con volumen, no con peso.", up:"Serie descendente: al fallo con 6 kg, sigue con 4 kg." },
+    { n:"Fondos en silla", p:"3 × al fallo menos 1", rest:75, tempo:"3-0-1", carga:"Piernas estiradas", cue:"Codo a 90°, ni un grado más.", up:"Mancuerna de 8 kg en el regazo." },
+    { n:"Press francés", p:"3 × 12", rest:60, tempo:"3-0-1", carga:"2 × 8 kg", cue:"Codos fijos apuntando al techo.", up:"Extensión sobre la cabeza sentado, a dos manos con una sola mancuerna." }
+  ]
+};
+
+S.INFA = {
+  id:"INFA", tipo:"f", nombre:"Tren inferior · Rodilla", foco:"Cuádriceps y unilateral",
+  dur:"50 min", nivel:"RPE 7-8 · las piernas piden tempo, no kilos",
+  ex:[
+    { n:"Sentadilla búlgara", p:"4 × 8-10 por pierna", rest:120, tempo:"3-1-1", carga:"2 × 8 kg", cue:"Tu ejercicio de fuerza principal. Pausa de 1 s abajo, subida explosiva.", up:"Pon el pie delantero sobre un libro grueso: más recorrido, más estímulo." },
+    { n:"Sentadilla goblet con pausa", p:"4 × 12", rest:90, tempo:"3-2-1", carga:"1 × 8 kg", cue:"Dos segundos parado abajo, sin desmontar la postura.", up:"Sube la pausa a 3 s antes de tocar el peso." },
+    { n:"Zancadas caminando", p:"3 × 10 por pierna", rest:75, tempo:"2-0-1", carga:"2 × 8 kg", cue:"Pasillo adelante y vuelta. Torso vertical.", up:"Zancadas en déficit, saliendo de un escalón." },
+    { n:"Curl femoral con toalla", p:"3 × 6-8", rest:75, tempo:"4-0-1", carga:"Peso corporal", cue:"De rodillas con los pies anclados bajo el sofá, baja el cuerpo lo más lento que puedas y ayúdate con las manos al final.", up:"Alarga la bajada a 6 s antes de bajar la asistencia." },
+    { n:"Elevación de gemelo a una pierna", p:"4 × 15", rest:45, tempo:"2-1-2", carga:"1 × 8 kg", cue:"En un escalón, recorrido completo: talón bien abajo, arriba de puntillas con pausa.", up:"Pausa de 3 s arriba." },
+    { n:"Plancha con peso", p:"3 × 45 s", rest:45, tempo:"Isométrico", carga:"1 mancuerna en la espalda", cue:"Que alguien te la ponga en la zona alta de la espalda, o colócala tú antes de subir.", up:"Plancha con toques de hombro y peso." }
+  ]
+};
+
+S.SUPB = {
+  id:"SUPB", tipo:"f", nombre:"Tren superior · Tracción", foco:"Espalda y bíceps",
+  dur:"50 min", nivel:"RPE 7-8 · aquí es donde se dibuja la espalda",
+  ex:[
+    { n:"Dominadas o remo invertido", p:"4 × al fallo menos 1", rest:120, tempo:"2-1-2", carga:"Barra de puerta o mesa firme",
+      cue:"Si tienes barra: dominadas, con negativas de 5 s si aún no sale ninguna. Si no: túmbate bajo una mesa robusta y rema tirando del canto.",
+      up:"Sube los pies a una silla en el remo invertido; en dominadas, añade una mancuerna entre los pies." },
+    { n:"Remo a una mano pesado", p:"4 × 8-10 por lado", rest:90, tempo:"2-1-3", carga:"1 × 8 kg", cue:"Serie corta y bajada de 3 s. Aprieta la escápula arriba.", up:"Pausa de 2 s arriba + bajada de 4 s." },
+    { n:"Remo inclinado", p:"3 × 12", rest:75, tempo:"2-1-2", carga:"2 × 8 kg", cue:"Codos pegados al cuerpo, mancuernas a la cadera.", up:"Codos abiertos a 60° para cargar más el dorsal alto." },
+    { n:"Pull-over", p:"3 × 12", rest:60, tempo:"3-0-2", carga:"1 × 8 kg", cue:"Tumbado, una mancuerna con las dos manos. Estira los brazos por detrás de la cabeza sin arquear la lumbar.", up:"Espalda alta apoyada en el sofá para ganar recorrido." },
+    { n:"Curl martillo", p:"3 × 12", rest:60, tempo:"2-0-3", carga:"2 × 8 kg", cue:"Agarre neutro, sin balanceo, bajada de 3 s.", up:"Curl a una mano con 4 s de bajada." },
+    { n:"Face pull con toalla", p:"3 × 20", rest:45, tempo:"1-2-2", carga:"Toalla o goma", cue:"Tira separando las manos a la altura de la cara, 2 s de pausa. Compensa las horas de móvil y de escritorio.", up:"Cambia la toalla por una goma elástica barata." }
+  ]
+};
+
+S.INFB = {
+  id:"INFB", tipo:"f", nombre:"Tren inferior · Cadera", foco:"Glúteo e isquiosurales",
+  dur:"50 min", nivel:"RPE 7-8 · la cadena posterior es la que afina la figura",
+  ex:[
+    { n:"Peso muerto rumano a una pierna", p:"4 × 10 por pierna", rest:105, tempo:"3-1-1", carga:"1-2 × 8 kg", cue:"Cadera atrás, la pierna libre se estira detrás como un contrapeso. Espalda plana siempre.", up:"Toca el suelo con la mancuerna antes de pensar en más peso." },
+    { n:"Hip thrust", p:"4 × 12", rest:90, tempo:"2-2-1", carga:"2 × 8 kg en la cadera", cue:"Espalda alta en el sofá, pausa de 2 s arriba con el glúteo apretado a tope.", up:"A una pierna con una sola mancuerna." },
+    { n:"Sentadilla búlgara en déficit", p:"3 × 10 por pierna", rest:90, tempo:"3-0-1", carga:"2 × 8 kg", cue:"Pie delantero sobre un libro o escalón bajo: más rango, más glúteo.", up:"Pausa de 2 s en el punto más bajo." },
+    { n:"Buenos días", p:"3 × 15", rest:60, tempo:"3-0-2", carga:"1 × 8 kg en la nuca", cue:"Poco peso, mucho control. Es trabajo de isquios y de espalda baja.", up:"Tempo 4-1-2." },
+    { n:"Hollow rock", p:"3 × 20", rest:45, tempo:"Continuo", carga:"Peso corporal", cue:"Mécete manteniendo la forma de plátano. La lumbar no se despega.", up:"Brazos totalmente estirados por encima de la cabeza." },
+    { n:"Paseo del granjero", p:"3 × 40 s", rest:60, tempo:"Continuo", carga:"2 × 8 kg", cue:"Anda por casa con las mancuernas colgando, hombros atrás, sin inclinarte. Core, agarre y trapecio de una vez.", up:"A una mano (paseo del maletero): antilateralización pura." }
+  ]
+};
+
+/* ---------- FASE 4 · Especialización ---------- */
+S.P4E = { id:"P4E", tipo:"f", nombre:"Empuje", foco:"Fase 4 · pecho, hombro, tríceps", dur:"55 min", nivel:"RPE 8", ex:[
+  { n:"Flexión arquera", p:"4 × 6 por lado", rest:120, tempo:"3-1-1", carga:"Peso corporal", cue:"Un brazo estirado a un lado, el otro hace casi todo el trabajo. Es tu press pesado sin barra.", up:"Sube los pies a un escalón." },
+  { n:"Press militar a una mano", p:"4 × 8", rest:105, tempo:"2-1-1", carga:"1 × 8 kg", cue:"El core frena la inclinación lateral. No dejes que la cadera se abra.", up:"Añade pausa de 2 s con el brazo extendido." },
+  { n:"Pike push-up con pies elevados", p:"3 × 8", rest:90, tempo:"3-0-1", carga:"Peso corporal", cue:"Cadera alta, la cabeza baja entre las manos. Camino directo hacia el pino.", up:"Eleva más los pies cada 3 semanas." },
+  { n:"Elevaciones laterales", p:"4 × 15", rest:45, tempo:"2-0-3", carga:"6 kg", cue:"Volumen y bajada lenta.", up:"Serie descendente al final." },
+  { n:"Fondos lastrados", p:"3 × 10", rest:75, tempo:"3-0-1", carga:"8 kg en el regazo", cue:"Rango controlado, 90° de codo.", up:"Añade pausa de 1 s abajo." },
+  { n:"Extensión de tríceps sobre la cabeza", p:"3 × 12", rest:60, tempo:"3-0-2", carga:"1 × 8 kg", cue:"Codos apuntando al frente, quietos.", up:"A una mano." }
+]};
+S.P4T = { id:"P4T", tipo:"f", nombre:"Tracción", foco:"Fase 4 · espalda y bíceps", dur:"55 min", nivel:"RPE 8", ex:[
+  { n:"Dominadas lastradas o remo invertido con pies altos", p:"5 × 5-8", rest:150, tempo:"2-1-2", carga:"Barra + 8 kg", cue:"Series cortas y pesadas. Es el ejercicio que más cambia una espalda.", up:"Sube el lastre 4 kg cada vez que hagas 8 en las cinco series." },
+  { n:"Remo a una mano pesado", p:"4 × 8", rest:90, tempo:"2-1-3", carga:"1 × 8 kg", cue:"Bajada de 3 s obligatoria.", up:"Pausa de 2 s arriba." },
+  { n:"Pull-over", p:"3 × 12", rest:60, tempo:"3-0-2", carga:"1 × 8 kg", cue:"Estiramiento completo del dorsal.", up:"Apoyo alto en el sofá." },
+  { n:"Curl martillo", p:"3 × 10", rest:60, tempo:"2-0-3", carga:"2 × 8 kg", cue:"Sin balanceo.", up:"Curl 21s." },
+  { n:"Face pull", p:"3 × 20", rest:45, tempo:"1-2-2", carga:"Goma", cue:"Salud de hombro, no negociable.", up:"Pausa de 3 s." },
+  { n:"Encogimientos", p:"3 × 15", rest:45, tempo:"1-2-2", carga:"2 × 8 kg", cue:"Sube los hombros a las orejas y aprieta 2 s.", up:"Pausa de 3 s." }
+]};
+S.P4P = { id:"P4P", tipo:"f", nombre:"Piernas", foco:"Fase 4 · fuerza unilateral", dur:"55 min", nivel:"RPE 8", ex:[
+  { n:"Sentadilla a una pierna a cajón", p:"4 × 6 por pierna", rest:150, tempo:"3-1-1", carga:"1 × 8 kg de contrapeso", cue:"Siéntate en una silla con una sola pierna y levántate sin impulso. Camino hacia el pistol squat.", up:"Baja la altura de la silla con cojines: uno menos cada 2-3 semanas." },
+  { n:"Peso muerto rumano a una pierna", p:"4 × 10 por pierna", rest:105, tempo:"3-1-1", carga:"2 × 8 kg", cue:"Cadera atrás, espalda plana.", up:"Pausa de 2 s abajo." },
+  { n:"Hip thrust a una pierna", p:"4 × 12", rest:90, tempo:"2-2-1", carga:"1 × 8 kg", cue:"Aprieta 2 s arriba.", up:"Pausa de 3 s." },
+  { n:"Zancadas en déficit", p:"3 × 10 por pierna", rest:75, tempo:"3-0-1", carga:"2 × 8 kg", cue:"Sales de un escalón: más rango.", up:"Escalón más alto." },
+  { n:"Gemelo a una pierna", p:"4 × 15", rest:45, tempo:"2-1-2", carga:"1 × 8 kg", cue:"Rango completo en un escalón.", up:"Pausa de 3 s arriba." }
+]};
+S.P4SD = { id:"P4SD", tipo:"f", nombre:"Superior · Densidad", foco:"Fase 4 · circuito metabólico", dur:"35 min", nivel:"RPE 8 · reloj en marcha", ex:[
+  { n:"Circuito de torso — 4 rondas", p:"4 rondas", rest:90, tempo:"Continuo", carga:"2 × 8 kg",
+    cue:"Sin descanso dentro de la ronda: <b>12 flexiones → 12 remos inclinados → 10 press militar → 12 curls → 30 s plancha</b>. 90 s entre rondas.",
+    up:"Baja el descanso a 75 s, luego a 60 s. Cuando aguantes 4 rondas a 60 s, sube a 5 rondas y vuelve a 90 s." }
+]};
+S.P4ID = { id:"P4ID", tipo:"f", nombre:"Inferior · Densidad", foco:"Fase 4 · circuito metabólico", dur:"35 min", nivel:"RPE 8 · reloj en marcha", ex:[
+  { n:"Circuito de pierna — 4 rondas", p:"4 rondas", rest:90, tempo:"Continuo", carga:"2 × 8 kg",
+    cue:"Sin descanso dentro de la ronda: <b>15 goblet → 10 búlgaras por pierna → 15 hip thrust → 20 gemelos → 40 s paseo del granjero</b>. 90 s entre rondas.",
+    up:"Mismo criterio: baja el descanso antes de añadir rondas." }
+]};
+
+/* ---------- días sin pesas ---------- */
+const CARDIO = { id:"CARDIO", tipo:"c", nombre:"Cardio zona 2", foco:"Base aeróbica y gasto calórico",
+  dur:"35-45 min", nivel:"Conversación posible, respiración algo acelerada",
+  ex:[{ n:"Zona 2 continua", p:"35-45 min", rest:0, tempo:"Constante", carga:"Andar rápido, bici o trote suave",
+    cue:"El listón es sencillo: <b>tienes que poder hablar</b> mientras lo haces, con frases cortas. Si jadeas, vas demasiado rápido. Esta es la intensidad que quema grasa sin robarle recuperación a las pesas.",
+    up:"Suma 5 min cada 3 semanas hasta llegar a 50 min, o sube el ritmo manteniendo la misma duración." },
+   { n:"Core opcional", p:"3 rondas", rest:45, tempo:"Continuo", carga:"Peso corporal",
+    cue:"Plancha 45 s + dead bug 10 por lado + plancha lateral 30 s por lado.", up:"Añade una ronda." }] };
+
+const MOVI = { id:"MOVI", tipo:"c", nombre:"Movilidad y caminar", foco:"Recuperación activa",
+  dur:"25-30 min", nivel:"Muy suave · aquí no se entrena, se repara",
+  ex:[{ n:"Paseo", p:"20-30 min", rest:0, tempo:"Suave", carga:"—",
+    cue:"Andar de verdad cuenta. Los pasos del día son la mitad silenciosa de tu déficit calórico.", up:"Apunta a 9.000-10.000 pasos diarios de media." },
+   { n:"Rutina de movilidad", p:"10 min", rest:0, tempo:"Lento", carga:"—",
+    cue:"Cadera (zancada con giro), tobillo (rodilla a la pared), columna torácica (giros en cuadrupedia), hombro (dislocaciones con toalla). 45 s cada uno, dos vueltas.",
+    up:"Hazlo también como calentamiento los días de pesas." }] };
+
+const DESC = { id:"DESC", tipo:"r", nombre:"Descanso total", foco:"El día en que creces",
+  dur:"—", nivel:"Come bien y duerme 9 horas",
+  ex:[{ n:"Nada de entreno", p:"—", rest:0, tempo:"—", carga:"—",
+    cue:"El músculo no se construye entrenando, se construye <b>reparando</b>. Saltarte los descansos es la forma más rápida de estancarte.",
+    up:"Si tienes energía de sobra: paseo largo o un partido con amigos. Nada estructurado." }] };
+
+/* ---------- fases ---------- */
+const FASES = [
+  { n:1, nombre:"Fundamentos", w:[1,6], split:"Cuerpo completo × 3",
+    desc:"Aprendes a moverte bien y construyes el hábito. Cargas conservadoras, mucho tempo. Aquí el objetivo no es sudar: es que cada repetición se parezca a la anterior.",
+    dias:[S.A, CARDIO, S.B, MOVI, S.C, CARDIO, DESC] },
+  { n:2, nombre:"Construcción", w:[7,16], split:"Torso / Pierna × 4",
+    desc:"Sube el volumen y entras en cuatro días. Empieza el trabajo unilateral pesado, que es como se carga de verdad con mancuernas de 8 kg. Los primeros cambios visibles llegan aquí.",
+    dias:[S.SUPA, S.INFA, MOVI, S.SUPB, S.INFB, CARDIO, DESC] },
+  { n:3, nombre:"Densidad", w:[17,30], split:"Torso / Pierna × 4 + finisher",
+    desc:"Mismas sesiones que la fase 2, tres reglas nuevas: descansos 15 s más cortos, una serie extra en el primer ejercicio de cada día, y un finisher de 5 min al acabar (circuito continuo). Haces más trabajo en el mismo tiempo, que es la definición práctica de progresar cuando el peso tiene techo.",
+    dias:[S.SUPA, S.INFA, MOVI, S.SUPB, S.INFB, CARDIO, DESC] },
+  { n:4, nombre:"Especialización", w:[31,52], split:"Empuje / Tracción / Pierna × 5",
+    desc:"Cinco días y metas concretas de destreza: sentadilla a una pierna, flexión arquera y dominadas lastradas. Aquí ya no dependes de los kilos, sino de la dificultad mecánica del movimiento.",
+    dias:[S.P4E, S.P4T, S.P4P, MOVI, S.P4SD, S.P4ID, DESC] }
+];
+
+const DIAS = ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
+const DIAS_L = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+
+const REGLAS = [
+  "Si dudas entre una serie más o dormir media hora más, duerme.",
+  "La técnica no se negocia por dos repeticiones extra.",
+  "Un entreno regular al 70 % vence a uno perfecto que no haces.",
+  "El músculo se construye en la cocina y en la cama; el gimnasio solo da la orden.",
+  "Anota siempre las reps. Lo que no se mide, no progresa.",
+  "Bajar el peso 4 segundos es subir de peso sin comprar mancuernas.",
+  "La báscula sube y baja 2 kg por el agua. Mira la media de la semana, no el día."
+];
+
+/* ==================================================================
+   ESTADO
+   ================================================================== */
+const KEY = "hierro52_v1";
+/* segundos desde el epoch Unix: siempre positivo, así el signo del sello
+   puede significar hecho / deshecho sin que el reloj del móvil lo estropee */
+function ts(){ return Math.max(1, Math.floor(Date.now() / 1000)); }
+
+/* marks[clave] = sello  →  positivo: serie hecha · negativo: serie desmarcada.
+   Guardar el sello (y no un simple 1) permite fusionar dos dispositivos que
+   han entrenado sin conexión: para cada serie gana la marca más reciente. */
+let st = { week:1, marks:{}, peso:[], vista:"hoy", sesionIdx:null, updated:0 };
+
+try{
+  const raw = localStorage.getItem(KEY);
+  if(raw){
+    const o = JSON.parse(raw);
+    st = Object.assign(st, o);
+    if(o.done && !o.marks){ st.marks = {}; for(const k in o.done) st.marks[k] = 1; }
+  }
+}catch(e){}
+delete st.done;
+
+/* persist: solo escribe en el disco del navegador.
+   save: además sella el estado como modificado, que es lo que decide
+   quién gana al fusionar dos dispositivos. Navegar no es modificar. */
+function persist(){
+  prune();
+  try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){}
+}
+function save(){ st.updated = ts(); persist(); }
+/* las marcas negativas solo hacen falta hasta que todos los dispositivos
+   se han puesto al día; a los 45 días se descartan */
+function prune(){
+  const corte = ts() - 45 * 86400;
+  for(const k in st.marks) if(st.marks[k] < 0 && -st.marks[k] < corte) delete st.marks[k];
+}
+function isDone(k){ return (st.marks[k] || 0) > 0; }
+function setDone(k, v){ st.marks[k] = v ? ts() : -ts(); }
+
+/* fusión: para cada serie gana el sello de mayor magnitud (el más reciente);
+   los pesos se unen por fecha; la semana la fija el estado guardado más tarde */
+function merge(remoto){
+  if(!remoto || typeof remoto !== "object") return false;
+  let cambio = false;
+  for(const k in (remoto.marks || {})){
+    const r = remoto.marks[k], l = st.marks[k] || 0;
+    if(Math.abs(r) > Math.abs(l)){ st.marks[k] = r; cambio = true; }
+  }
+  const porFecha = new Map();
+  (remoto.peso || []).concat(st.peso || []).forEach(p => { if(p && p.t) porFecha.set(p.t, p); });
+  const unidos = [...porFecha.values()].sort((a, b) => a.t < b.t ? -1 : 1);
+  if(unidos.length !== (st.peso || []).length){ st.peso = unidos; cambio = true; }
+  if((remoto.updated || 0) > (st.updated || 0) && remoto.week && remoto.week !== st.week){
+    st.week = remoto.week; cambio = true;
+  }
+  return cambio;
+}
+
+function faseDe(w){ return FASES.find(f => w >= f.w[0] && w <= f.w[1]) || FASES[3]; }
+function hoyIdx(){ const d = new Date().getDay(); return d === 0 ? 6 : d - 1; }
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function sesionKey(w, di, ei, si){ return "w" + w + "d" + di + "e" + ei + "s" + si; }
+function exCompleta(w, di, ses, ei){
+  const total = numSeries(ses.ex[ei].p);
+  for(let s = 0; s < total; s++) if(!isDone(sesionKey(w, di, ei, s))) return false;
+  return true;
+}
+function numSeries(p){
+  const m = String(p).match(/^(\d+)\s*[×x]/);
+  if(m) return Math.min(parseInt(m[1], 10), 6);
+  const r = String(p).match(/^(\d+)\s*rondas/);
+  return r ? parseInt(r[1], 10) : 3;
+}
+function diaCompleto(w, di){
+  const ses = faseDe(w).dias[di];
+  if(ses.tipo === "r") return false;
+  return ses.ex.every((_, ei) => exCompleta(w, di, ses, ei));
+}
+function sesionesHechas(){
+  let n = 0;
+  for(let w = 1; w <= 52; w++) for(let d = 0; d < 7; d++) if(diaCompleto(w, d)) n++;
+  return n;
+}
+
+/* ==================================================================
+   VISTAS
+   ================================================================== */
+
+function vHoy(){
+  const f = faseDe(st.week), di = hoyIdx(), ses = f.dias[di];
+  const hechas = sesionesHechas();
+  const hechasSem = [0,1,2,3,4,5,6].filter(d => diaCompleto(st.week, d)).length;
+  const entrenosSem = f.dias.filter(d => d.tipo !== "r").length;
+  const regla = REGLAS[(st.week + di) % REGLAS.length];
+
+  return `
+  ${inst.disponible() ? `
+  <div class="install">
+    <span class="t">
+      <b>Ponla en tu pantalla de inicio</b>
+      <span>${inst.ios
+        ? "Toca Compartir y luego «Añadir a pantalla de inicio»."
+        : "Se abre como una app y funciona sin internet."}</span>
+    </span>
+    ${inst.ios ? "" : '<button class="go" data-i="si">Instalar</button>'}
+    <button class="x" data-i="no" aria-label="Ocultar">×</button>
+  </div>` : ""}
+
+  <p class="eyebrow ember">${DIAS_L[di]} · Semana ${st.week} de 52</p>
+  <h1 class="h1">${ses.tipo === "r" ? "Hoy toca no entrenar" : "Toca " + esc(ses.nombre)}</h1>
+
+  <div class="sec">
+    <div class="hero ${ses.tipo === "r" ? "rest" : ""}">
+      <span class="tag">${ses.tipo === "f" ? "◆ Fuerza" : ses.tipo === "c" ? "◇ Cardio" : "○ Descanso"}</span>
+      <h3>${esc(ses.nombre)}</h3>
+      <p>${esc(ses.foco)}</p>
+      <div class="facts">
+        <div><span class="k">Duración</span><span class="v">${esc(ses.dur)}</span></div>
+        <div><span class="k">Ejercicios</span><span class="v">${ses.tipo === "r" ? "—" : ses.ex.length}</span></div>
+        <div><span class="k">Fase</span><span class="v">${f.n} · ${esc(f.nombre)}</span></div>
+      </div>
+      <button class="btn" data-open="${di}">${ses.tipo === "r" ? "Ver por qué importa" : "Abrir sesión"}</button>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Tu semana</p>
+    <div class="strip">
+      ${f.dias.map((d, i) => `
+        <button data-open="${i}" class="${i === di ? "today" : ""}" aria-label="${DIAS_L[i]}: ${esc(d.nombre)}">
+          <span class="d">${DIAS[i]}</span>
+          <span class="dot ${diaCompleto(st.week, i) ? "done" : d.tipo}"></span>
+        </button>`).join("")}
+    </div>
+  </div>
+
+  <div class="sec grid3">
+    <div class="tile"><span class="k">Esta semana</span><span class="v">${hechasSem}<small>/${entrenosSem}</small></span></div>
+    <div class="tile"><span class="k">Sesiones totales</span><span class="v">${hechas}</span></div>
+    <div class="tile"><span class="k">Peso actual</span><span class="v">${st.peso.length ? st.peso[st.peso.length-1].kg.toFixed(1) : "66.5"}<small> kg</small></span></div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Regla del día</p>
+    <div class="card"><p class="note" style="margin:0;font-size:14.5px;color:var(--ink)">${esc(regla)}</p></div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">La idea que sostiene todo el plan</p>
+    <div class="card">
+      <p class="note"><b>Doble progresión.</b> Cada ejercicio tiene un rango de repeticiones, por ejemplo 10-12. Empiezas por abajo. Cuando consigues el número <b>alto en todas las series y con buena técnica</b>, entonces —y solo entonces— haces el ejercicio más difícil: más tempo, más rango, una sola pierna, o el siguiente peldaño de la escalera.</p>
+      <p class="note" style="margin-bottom:0">Con 8 kg por mano tienes techo de peso, pero no de dificultad. Esa es la razón de que este plan dure un año y no dos meses.</p>
+    </div>
+  </div>`;
+}
+
+function vPlan(){
+  const f = faseDe(st.week);
+  return `
+  <p class="eyebrow ember">Fase ${f.n} · ${esc(f.nombre)} · semanas ${f.w[0]}-${f.w[1]}</p>
+  <h1 class="h1">${esc(f.split)}</h1>
+  <p class="lede">${esc(f.desc)}</p>
+
+  <div class="sec stack">
+    ${f.dias.map((d, i) => `
+      <button class="day ${d.tipo}" data-open="${i}">
+        <span class="rail"></span>
+        <span class="lbl">${DIAS[i]}</span>
+        <span class="mid"><b>${esc(d.nombre)}</b><span>${esc(d.foco)} · ${esc(d.dur)}</span></span>
+        ${diaCompleto(st.week, i) ? '<span class="chk">HECHO</span>' : ""}
+        <span class="arw">›</span>
+      </button>`).join("")}
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Cómo leer una sesión</p>
+    <div class="rows">
+      <div class="r"><span>4 × 10-12</span><b>4 series de 10 a 12 reps</b></div>
+      <div class="r"><span>Tempo 3-1-1</span><b>3 s bajando · 1 s abajo · 1 s subiendo</b></div>
+      <div class="r"><span>Descanso 90 s</span><b>Tócalo y sale el cronómetro</b></div>
+      <div class="r"><span>RPE 7</span><b>Podrías hacer 3 reps más</b></div>
+      <div class="r"><span>Al fallo menos 1</span><b>Paras con 1 rep aún en el depósito</b></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Si un día se tuerce</p>
+    <div class="card">
+      <p class="note"><b>Sin tiempo.</b> Haz los tres primeros ejercicios de la sesión. Son los que más importan y están puestos en ese orden por algo.</p>
+      <p class="note"><b>Te saltas un día.</b> No lo recuperes amontonando dos sesiones: sigue por donde tocaba. Una semana de 3 en vez de 4 no rompe nada; dos entrenos seguidos machacados, sí.</p>
+      <p class="note" style="margin-bottom:0"><b>Agujetas fuertes.</b> Entrena igual pero baja una serie y un peldaño de dificultad. El movimiento suave quita agujetas; el reposo total las alarga.</p>
+    </div>
+  </div>`;
+}
+
+function vSesion(){
+  const f = faseDe(st.week), di = st.sesionIdx ?? hoyIdx(), ses = f.dias[di];
+  return `
+  <button class="btn ghost" style="margin:0 0 18px;width:auto;padding:8px 14px" data-go="plan">‹ Volver al plan</button>
+  <p class="eyebrow ember">${DIAS_L[di]} · Semana ${st.week} · Fase ${f.n}</p>
+  <h1 class="h1">${esc(ses.nombre)}</h1>
+  <p class="lede">${esc(ses.foco)} · ${esc(ses.dur)} · ${esc(ses.nivel)}</p>
+
+  ${ses.tipo === "f" ? `
+  <div class="sec">
+    <p class="eyebrow">Calentamiento</p>
+    <div class="card"><p class="note" style="margin:0">${esc(CAL)}</p></div>
+  </div>` : ""}
+
+  <div class="sec stack">
+    ${ses.ex.map((e, ei) => {
+      const total = numSeries(e.p);
+      const comp = exCompleta(st.week, di, ses, ei);
+      return `
+      <article class="ex ${comp ? "complete" : ""}" data-ex="${ei}">
+        <button class="head" data-toggle="${ei}">
+          <span class="num">${String(ei + 1).padStart(2, "0")}</span>
+          <span class="name"><b>${esc(e.n)}</b><span class="pres">${esc(e.p)}</span></span>
+          <span class="caret">▼</span>
+        </button>
+        <div class="sets">
+          ${Array.from({length: total}, (_, s) => `
+            <button data-set="${ei}:${s}" class="${isDone(sesionKey(st.week, di, ei, s)) ? "on" : ""}" aria-label="Serie ${s+1}">${s + 1}</button>`).join("")}
+          ${e.rest ? `<button class="rest" data-rest="${e.rest}">⏱ ${e.rest}s</button>` : ""}
+        </div>
+        <div class="body">
+          <div class="meta">
+            ${e.tempo ? `<span>Tempo ${esc(e.tempo)}</span>` : ""}
+            ${e.rest ? `<span>Descanso ${e.rest} s</span>` : ""}
+            ${e.carga ? `<span>${esc(e.carga)}</span>` : ""}
+          </div>
+          <p class="note">${e.cue}</p>
+          <p class="note up"><b>Cuándo subir de nivel</b>${e.up}</p>
+        </div>
+      </article>`;
+    }).join("")}
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Al terminar</p>
+    <div class="card">
+      <p class="note" style="margin-bottom:0">Anota en tu móvil las reps de la <b>última serie</b> de cada ejercicio. Es el único dato que necesitas para saber si estás progresando, y en tres meses te dará más información que cualquier báscula.</p>
+    </div>
+  </div>`;
+}
+
+function vEjercicios(){
+  const L = [
+    { t:"Empuje horizontal", sub:"Pecho, hombro frontal, tríceps",
+      pasos:["Flexiones con rodillas apoyadas","Flexiones completas","Flexiones con tempo de 4 s","Flexiones con pies elevados","Press en suelo con mancuernas","Flexiones arqueras","Flexión a una mano asistida"] },
+    { t:"Empuje vertical", sub:"Hombro y tríceps",
+      pasos:["Press militar sentado","Press militar de pie","Press con pausa de 2 s","Press Arnold","Press a una mano","Pike push-up","Pike con pies elevados","Flexión en pino asistida"] },
+    { t:"Tracción horizontal", sub:"Espalda media y bíceps",
+      pasos:["Remo a una mano en silla","Remo inclinado a dos manos","Remo con bajada de 4 s","Remo invertido bajo una mesa","Remo invertido con pies elevados","Remo invertido a una mano"] },
+    { t:"Tracción vertical", sub:"Dorsal · necesita barra de puerta",
+      pasos:["Colgarse de la barra 30 s","Negativas de 5 s","Dominadas con banda o silla","Dominadas completas","Dominadas con pausa arriba","Dominadas lastradas"] },
+    { t:"Dominante de rodilla", sub:"Cuádriceps y glúteo",
+      pasos:["Sentadilla goblet","Goblet con tempo de 4 s","Zancadas atrás","Sentadilla búlgara","Búlgara con déficit","Sentadilla a una pierna a cajón","Pistol squat"] },
+    { t:"Dominante de cadera", sub:"Glúteo e isquiosurales",
+      pasos:["Puente de glúteo","Peso muerto rumano","Hip thrust con apoyo","RDL a una pierna","Hip thrust a una pierna","Curl femoral asistido","Nórdico completo"] },
+    { t:"Core", sub:"Antiextensión y antirrotación",
+      pasos:["Plancha frontal","Dead bug","Hollow hold","Hollow rock","Plancha con toques de hombro","Remo renegado","Rueda abdominal o dragon flag"] }
+  ];
+  return `
+  <p class="eyebrow ember">Biblioteca</p>
+  <h1 class="h1">Siete escaleras</h1>
+  <p class="lede">Tus mancuernas se acaban en 8 kg. La dificultad, no. Cada patrón de movimiento es una escalera: cuando el peldaño en el que estás se te queda corto, subes al siguiente. Eso es progresar durante un año sin comprar nada.</p>
+
+  <div class="sec stack" style="gap:18px">
+    ${L.map(l => `
+      <div class="card">
+        <p class="eyebrow" style="margin-bottom:2px">${esc(l.sub)}</p>
+        <h2 class="h2" style="margin-bottom:14px">${esc(l.t)}</h2>
+        <div class="ladder">
+          ${l.pasos.map((p, i) => `
+            <div class="step ${i === 1 ? "now" : ""}">
+              <b>${esc(p)}</b>
+              <span>Peldaño ${i + 1}${i === 1 ? " · aquí empiezas" : ""}</span>
+            </div>`).join("")}
+        </div>
+      </div>`).join("")}
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Lo único que merece la pena comprar</p>
+    <div class="rows">
+      <div class="r"><span>Barra de dominadas de puerta</span><b class="em">20-30 €</b></div>
+      <div class="r"><span>Goma elástica larga</span><b class="em">10-15 €</b></div>
+      <div class="r"><span>Esterilla</span><b>15 €</b></div>
+    </div>
+    <p class="note" style="margin-top:12px">La barra es, de largo, la mejor inversión del año: abre toda la escalera de tracción vertical, que ahora mismo es tu único hueco real. Todo lo demás lo tienes ya con dos mancuernas, un sofá y una silla.</p>
+  </div>`;
+}
+
+function vComida(){
+  return `
+  <p class="eyebrow ember">Nutrición</p>
+  <h1 class="h1">Comer para recomponer</h1>
+  <p class="lede">Tienes 16 años y estás creciendo: esto no va de dietas, va de comer bien y con suficiente proteína mientras entrenas. Perder grasa y ganar músculo a la vez es realista a tu edad y con tu nivel de entrenamiento, pero solo si vas despacio.</p>
+
+  <div class="sec">
+    <div class="warn">
+      <b>Antes de nada</b>
+      <p>Comenta este plan con tu familia y con tu médico o pediatra, sobre todo la parte de comida. A los 16 no toca ningún déficit agresivo: si comes muy poco, frenas el crecimiento, el rendimiento y el descanso. Esto no es consejo médico.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Tus números de partida</p>
+    <div class="rows">
+      <div class="r"><span>Peso</span><b>66,5 kg</b></div>
+      <div class="r"><span>Proteína al día</span><b class="em">~120 g</b></div>
+      <div class="r"><span>Reparto</span><b>4 tomas de 30 g</b></div>
+      <div class="r"><span>Calorías</span><b>Mantenimiento o −200</b></div>
+      <div class="r"><span>Agua</span><b>2,5 - 3 L</b></div>
+      <div class="r"><span>Sueño</span><b class="em">8 - 9 h</b></div>
+      <div class="r"><span>Pasos diarios</span><b>9.000 - 10.000</b></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Cómo saber si las calorías son las correctas</p>
+    <div class="card">
+      <p class="note">No calcules: mide. Pésate <b>cada mañana en ayunas</b> y saca la media de los siete días. Luego compara esa media con la de la semana anterior:</p>
+      <div class="rows" style="margin-top:12px">
+        <div class="r"><span>Baja 0,2 - 0,4 kg</span><b class="em">Perfecto, no toques nada</b></div>
+        <div class="r"><span>Baja más de 0,5 kg</span><b>Come algo más</b></div>
+        <div class="r"><span>Se queda igual 3 semanas</span><b>Quita ~150 kcal o suma pasos</b></div>
+        <div class="r"><span>Sube y las pesas suben</span><b>Vas bien, es músculo</b></div>
+      </div>
+      <p class="note" style="margin:12px 0 0">La báscula oscila 1-2 kg por agua, sal y digestión. Un día suelto no significa nada; la media semanal sí.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">30 g de proteína son</p>
+    <div class="rows">
+      <div class="r"><span>Pechuga de pollo o pavo</span><b>150 g</b></div>
+      <div class="r"><span>Huevos enteros</span><b>5 unidades</b></div>
+      <div class="r"><span>Yogur griego natural</span><b>300 g</b></div>
+      <div class="r"><span>Atún en lata al natural</span><b>2 latas</b></div>
+      <div class="r"><span>Requesón o queso fresco batido</span><b>200 g</b></div>
+      <div class="r"><span>Leche</span><b>900 ml</b></div>
+      <div class="r"><span>Lentejas cocidas</span><b>400 g</b></div>
+      <div class="r"><span>Proteína en polvo</span><b>1 cazo</b></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Un día que funciona</p>
+    <div class="rows">
+      <div class="r"><span>Desayuno</span><b>3 huevos + pan + fruta</b></div>
+      <div class="r"><span>Media mañana</span><b>Yogur griego + frutos secos</b></div>
+      <div class="r"><span>Comida</span><b>Pollo + arroz o pasta + verdura</b></div>
+      <div class="r"><span>Merienda / post-entreno</span><b>Leche + plátano + pan</b></div>
+      <div class="r"><span>Cena</span><b>Pescado o legumbre + patata + ensalada</b></div>
+    </div>
+    <p class="note" style="margin-top:12px">Pon los hidratos alrededor del entreno: ahí es donde mejor los usas. Verdura en dos comidas, grasa de calidad (aceite de oliva, frutos secos, huevo) sin miedo, y no elimines ningún grupo de alimentos.</p>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Suplementos</p>
+    <div class="card">
+      <p class="note"><b>No necesitas ninguno.</b> Con 120 g de proteína al día en comida real ya lo tienes cubierto. La proteína en polvo es solo comodidad si no llegas.</p>
+      <p class="note" style="margin-bottom:0">Sobre la creatina: es el suplemento más estudiado que existe, pero los datos en menores de 18 son limitados. Si te interesa, es una conversación para tener con tu médico, no algo que decidas por una app.</p>
+    </div>
+  </div>`;
+}
+
+function vProgreso(){
+  const f = faseDe(st.week);
+  const hechas = sesionesHechas();
+  const serie = [{kg:66.5, t:"inicio"}].concat(st.peso);
+  return `
+  <p class="eyebrow ember">Progreso</p>
+  <h1 class="h1">Doce meses, cuatro fases</h1>
+  <p class="lede">Nadie cambia de cuerpo en ocho semanas, y quien te diga lo contrario te está vendiendo algo. Lo que sí pasa en doce meses de constancia es un cambio que se nota de verdad y que además se mantiene.</p>
+
+  <div class="sec grid3">
+    <div class="tile"><span class="k">Semana</span><span class="v">${st.week}<small>/52</small></span></div>
+    <div class="tile"><span class="k">Fase</span><span class="v">${f.n}<small>/4</small></span></div>
+    <div class="tile"><span class="k">Sesiones</span><span class="v">${hechas}</span></div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Tus datos</p>
+    <div class="card">
+      <p class="note">Tu historial se guarda en <b>este dispositivo</b> y la app funciona sin internet. Para pasarlo a otro, expórtalo aquí y ábrelo allí: al importar <b>se fusiona</b>, no se sobrescribe, así que puedes ir y volver entre el móvil y el ordenador sin perder marcas.</p>
+      <div class="btns">
+        <button data-d="copiar">Copiar datos</button>
+        <button data-d="pegar">Pegar datos</button>
+        <button data-d="bajar">Descargar</button>
+        <button data-d="subir">Abrir fichero</button>
+      </div>
+      <textarea class="pegar" id="zonaPegar" placeholder="Pega aquí los datos copiados del otro dispositivo y toca «Pegar datos» otra vez." spellcheck="false"></textarea>
+      <p class="aviso" id="avisoDatos"></p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Peso corporal</p>
+    <div class="card">
+      ${chart(serie)}
+      <div class="logrow">
+        <input id="inPeso" type="number" step="0.1" min="30" max="150" placeholder="Peso de hoy en kg" inputmode="decimal">
+        <button id="btnPeso">Guardar</button>
+      </div>
+      <p class="note" style="margin:12px 0 0;font-size:12.5px;color:var(--ink-3)">${serie.length > 1 ? esc(serie.length - 1) + " registro(s). " : ""}Registra una vez por semana, mismo día y misma hora.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">El recorrido</p>
+    <div class="card" style="padding:4px 16px">
+      ${FASES.map(p => `
+        <div class="phase ${p.n === f.n ? "live" : ""}">
+          <span class="idx">${String(p.n).padStart(2, "0")}</span>
+          <div class="c">
+            <b>${esc(p.nombre)}</b>
+            <span class="wk">Semanas ${p.w[0]} - ${p.w[1]}</span>
+            <p>${esc(p.desc)}</p>
+            <span class="split">${esc(p.split)}</span>
+          </div>
+        </div>`).join("")}
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Qué esperar de verdad</p>
+    <div class="rows">
+      <div class="r"><span>Meses 1 - 3</span><b>Fuerza y técnica; poco cambio visual</b></div>
+      <div class="r"><span>Meses 4 - 6</span><b class="em">Primeros cambios visibles</b></div>
+      <div class="r"><span>Meses 7 - 9</span><b>Lo nota gente que no te ve a diario</b></div>
+      <div class="r"><span>Meses 10 - 12</span><b class="em">Cambio claro y estable</b></div>
+    </div>
+    <p class="note" style="margin-top:12px">Un ritmo realista para ti es ganar entre <b>0,3 y 0,5 kg de músculo al mes</b> el primer año y perder como mucho <b>0,25-0,4 kg de grasa por semana</b>. Ir más rápido no acelera nada: solo cambia músculo por prisa.</p>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Qué medir</p>
+    <div class="rows">
+      <div class="r"><span>Reps y peso de cada serie</span><b class="em">Cada sesión</b></div>
+      <div class="r"><span>Peso corporal</span><b>Diario, media semanal</b></div>
+      <div class="r"><span>Perímetro de cintura</span><b>Una vez al mes</b></div>
+      <div class="r"><span>Foto de frente y de perfil</span><b>Una vez al mes</b></div>
+    </div>
+    <p class="note" style="margin-top:12px">Foto siempre con la misma luz, la misma hora y la misma pose. Es la medida más honesta que existe, y la única que capta la recomposición cuando la báscula no se mueve.</p>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Semana de descarga</p>
+    <div class="card">
+      <p class="note">Cada <b>7 semanas</b>, y siempre al cambiar de fase, haz una semana suave: mismos ejercicios, <b>dos series menos</b> en cada uno y parando muy lejos del fallo. Cardio y pasos, igual.</p>
+      <p class="note" style="margin-bottom:0">Adelanta la descarga si aparecen tres o más de estas: duermes peor, te cuesta un peso que la semana pasada era fácil, las articulaciones molestan por la mañana, o llevas días sin ganas de entrenar. Eso no es falta de disciplina, es información.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="warn">
+      <b>Aviso</b>
+      <p>Este plan es orientativo y no sustituye a un profesional. Entrenar con cargas es seguro a los 16 con buena técnica y progresión gradual, pero si notas dolor articular persistente, mareos o cualquier molestia rara, para y consúltalo con un médico.</p>
+    </div>
+  </div>
+
+  <p class="foot">Hecho para ti · 66,5 kg · 2 × 8 kg · en casa</p>`;
+}
+
+function chart(data){
+  if(data.length < 2){
+    return `<p class="note" style="margin:0;color:var(--ink-3);font-size:13px">Registra tu peso para empezar la gráfica. El punto de partida es 66,5 kg.</p>`;
+  }
+  const W = 100, H = 100, pad = 6;
+  const vals = data.map(d => d.kg);
+  let min = Math.min(...vals), max = Math.max(...vals);
+  if(max - min < 1){ const m = (max + min) / 2; min = m - .5; max = m + .5; }
+  const px = i => pad + (i / (data.length - 1)) * (W - pad * 2);
+  const py = v => H - pad - ((v - min) / (max - min)) * (H - pad * 2);
+  const pts = data.map((d, i) => px(i).toFixed(2) + "," + py(d.kg).toFixed(2)).join(" ");
+  const area = "M" + px(0).toFixed(2) + "," + (H - pad) + " L" + pts.split(" ").join(" L") + " L" + px(data.length - 1).toFixed(2) + "," + (H - pad) + " Z";
+  const last = data[data.length - 1];
+  return `
+  <svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Evolución del peso corporal">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F2603C" stop-opacity=".28"/>
+      <stop offset="100%" stop-color="#F2603C" stop-opacity="0"/>
+    </linearGradient></defs>
+    <line x1="0" y1="${(pad).toFixed(1)}" x2="${W}" y2="${(pad).toFixed(1)}" stroke="#332C2A" stroke-width=".4"/>
+    <line x1="0" y1="${(H/2).toFixed(1)}" x2="${W}" y2="${(H/2).toFixed(1)}" stroke="#332C2A" stroke-width=".4"/>
+    <line x1="0" y1="${(H-pad).toFixed(1)}" x2="${W}" y2="${(H-pad).toFixed(1)}" stroke="#332C2A" stroke-width=".4"/>
+    <path d="${area}" fill="url(#g)"/>
+    <polyline points="${pts}" fill="none" stroke="#F2603C" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    <circle cx="${px(data.length - 1).toFixed(2)}" cy="${py(last.kg).toFixed(2)}" r="2.4" fill="#F2603C"/>
+  </svg>
+  <div style="display:flex;justify-content:space-between;margin-top:8px;font-family:var(--f-mono);font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums">
+    <span>${min.toFixed(1)} kg</span><span style="color:var(--ember)">Ahora ${last.kg.toFixed(1)} kg</span><span>${max.toFixed(1)} kg</span>
+  </div>`;
+}
+
+/* ==================================================================
+   RENDER + EVENTOS
+   ================================================================== */
+const VIEWS = { hoy:vHoy, plan:vPlan, sesion:vSesion, ejercicios:vEjercicios, comida:vComida, progreso:vProgreso };
+
+function render(){
+  const f = faseDe(st.week);
+  document.getElementById("wkNum").textContent = st.week;
+  document.getElementById("phaseLabel").textContent = "Fase " + f.n + " · " + f.nombre;
+  for(const k in VIEWS){
+    const el = document.getElementById("v-" + k);
+    el.classList.toggle("on", k === st.vista);
+    if(k === st.vista) el.innerHTML = VIEWS[k]();
+  }
+  document.querySelectorAll("#nav button").forEach(b => {
+    b.classList.toggle("on", b.dataset.go === st.vista || (st.vista === "sesion" && b.dataset.go === "plan"));
+  });
+  persist();
+}
+
+function go(v){ st.vista = v; render(); window.scrollTo({top:0, behavior:"instant"}); }
+
+document.getElementById("nav").addEventListener("click", e => {
+  const b = e.target.closest("button[data-go]"); if(b) go(b.dataset.go);
+});
+document.getElementById("wkUp").addEventListener("click", () => { if(st.week < 52){ st.week++; render(); } });
+document.getElementById("wkDown").addEventListener("click", () => { if(st.week > 1){ st.week--; render(); } });
+
+document.querySelector(".app").addEventListener("click", e => {
+  const open = e.target.closest("[data-open]");
+  if(open){ st.sesionIdx = parseInt(open.dataset.open, 10); go("sesion"); return; }
+
+  const nav = e.target.closest("[data-go]");
+  if(nav){ go(nav.dataset.go); return; }
+
+  const tog = e.target.closest("[data-toggle]");
+  if(tog){ tog.closest(".ex").classList.toggle("open"); return; }
+
+  const set = e.target.closest("[data-set]");
+  if(set){
+    const [ei, si] = set.dataset.set.split(":").map(Number);
+    const di = st.sesionIdx ?? hoyIdx();
+    const k = sesionKey(st.week, di, ei, si);
+    setDone(k, !isDone(k));
+    set.classList.toggle("on", isDone(k));
+    const ses = faseDe(st.week).dias[di];
+    set.closest(".ex").classList.toggle("complete", exCompleta(st.week, di, ses, ei));
+    save();
+    return;
+  }
+
+  const rest = e.target.closest("[data-rest]");
+  if(rest){ startTimer(parseInt(rest.dataset.rest, 10)); return; }
+
+  const ins = e.target.closest("[data-i]");
+  if(ins){
+    if(ins.dataset.i === "si" && inst.evento){
+      inst.evento.prompt();
+      inst.evento.userChoice.finally(() => { inst.evento = null; render(); });
+    }else{
+      inst.oculto = true;
+      try{ localStorage.setItem("hierro52_inst", "no"); }catch(err){}
+      render();
+    }
+    return;
+  }
+
+  const d = e.target.closest("[data-d]");
+  if(d){
+    const zona = document.getElementById("zonaPegar");
+    if(d.dataset.d === "copiar") datos.copiar();
+    else if(d.dataset.d === "bajar") datos.descargar();
+    else if(d.dataset.d === "subir") document.getElementById("ficheroIn").click();
+    else if(d.dataset.d === "pegar"){
+      if(!zona.classList.contains("on")){ zona.classList.add("on"); zona.focus(); }
+      else if(zona.value.trim()){ datos.aplicar(zona.value.trim()); zona.value = ""; zona.classList.remove("on"); }
+      else datos.aviso("Pega el texto en el recuadro y vuelve a tocar.", true);
+    }
+    return;
+  }
+
+  if(e.target.id === "btnPeso"){
+    const v = parseFloat(document.getElementById("inPeso").value);
+    if(v > 30 && v < 150){
+      const hoy = new Date().toISOString().slice(0,10);
+      st.peso = st.peso.filter(p => p.t !== hoy);
+      st.peso.push({kg:v, t:hoy});
+      if(st.peso.length > 80) st.peso.shift();
+      render();
+    }
+    return;
+  }
+});
+
+/* ---------- cronómetro ---------- */
+let tId = null, tLeft = 0, tTotal = 0;
+const sheet = document.getElementById("sheet");
+const clock = document.getElementById("clock");
+const bar = document.getElementById("bar");
+
+function fmt(s){ return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+function paint(){
+  clock.textContent = fmt(Math.max(tLeft, 0));
+  bar.style.width = (Math.max(tLeft, 0) / tTotal * 100) + "%";
+}
+function startTimer(sec){
+  clearInterval(tId);
+  tTotal = tLeft = sec; paint();
+  sheet.classList.add("up");
+  tId = setInterval(() => {
+    tLeft--; paint();
+    if(tLeft <= 0){
+      clearInterval(tId);
+      clock.textContent = "¡Vamos!";
+      if(navigator.vibrate) navigator.vibrate([120, 70, 120]);
+      setTimeout(stopTimer, 2200);
+    }
+  }, 1000);
+}
+function stopTimer(){ clearInterval(tId); sheet.classList.remove("up"); }
+document.getElementById("tStop").addEventListener("click", stopTimer);
+document.getElementById("tPlus").addEventListener("click", () => { tLeft += 15; tTotal = Math.max(tTotal, tLeft); paint(); });
+
+/* ==================================================================
+   AVISOS
+   ================================================================== */
+let toastT = null;
+function toast(texto, accion){
+  const t = document.getElementById("toast");
+  t.innerHTML = esc(texto) + (accion ? ' <button id="toastGo">' + esc(accion.txt) + "</button>" : "");
+  t.classList.add("on");
+  if(accion) document.getElementById("toastGo").addEventListener("click", accion.fn);
+  clearTimeout(toastT);
+  if(!accion) toastT = setTimeout(() => t.classList.remove("on"), 3200);
+}
+
+/* ==================================================================
+   DATOS: exportar e importar
+   No hay servidor. Tu historial vive en este dispositivo y lo mueves a
+   mano cuando quieras. Al importar se FUSIONA con lo que ya haya: para
+   cada serie gana la marca más reciente, así que puedes ir y volver
+   entre móvil y ordenador sin perder nada por el camino.
+   ================================================================== */
+const datos = {
+  empaquetar(){
+    return JSON.stringify({ app:"52-semanas-de-hierro", v:1, week:st.week,
+                            marks:st.marks, peso:st.peso, updated:st.updated });
+  },
+  nombre(){
+    return "52-semanas-" + new Date().toISOString().slice(0,10) + ".json";
+  },
+  descargar(){
+    const b = new Blob([this.empaquetar()], { type:"application/json" });
+    const u = URL.createObjectURL(b);
+    const a = document.createElement("a");
+    a.href = u; a.download = this.nombre();
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(u), 4000);
+    this.aviso("Fichero descargado.");
+  },
+  async copiar(){
+    try{
+      await navigator.clipboard.writeText(this.empaquetar());
+      this.aviso("Copiado. Pégalo en el otro dispositivo.");
+    }catch(e){
+      this.aviso("El navegador no dejó copiar; usa «Descargar».", true);
+    }
+  },
+  aplicar(texto){
+    let o;
+    try{ o = JSON.parse(texto); }
+    catch(e){ return this.aviso("Eso no es un fichero de la app.", true); }
+    if(!o || typeof o !== "object" || (!o.marks && !o.peso))
+      return this.aviso("Ese fichero no tiene datos de entrenamiento.", true);
+    const cambio = merge(o);
+    save();
+    render();
+    this.aviso(cambio ? "Datos fusionados." : "Ya estabas al día; nada que añadir.");
+  },
+  aviso(txt, mal){
+    const el = document.getElementById("avisoDatos");
+    if(el){ el.textContent = txt; el.classList.toggle("mal", !!mal); }
+    else toast(txt);
+  }
+};
+
+document.getElementById("ficheroIn").addEventListener("change", e => {
+  const f = e.target.files && e.target.files[0];
+  if(!f) return;
+  const lector = new FileReader();
+  lector.onload = () => datos.aplicar(String(lector.result));
+  lector.onerror = () => datos.aviso("No se pudo leer el fichero.", true);
+  lector.readAsText(f);
+  e.target.value = "";
+});
+
+/* ==================================================================
+   INSTALACIÓN
+   ================================================================== */
+const inst = { evento:null, oculto:false };
+try{ inst.oculto = localStorage.getItem("hierro52_inst") === "no"; }catch(e){}
+inst.instalada = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+inst.ios = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+inst.disponible = function(){
+  return !this.instalada && !this.oculto && (this.evento || this.ios);
+};
+
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  inst.evento = e;
+  if(st.vista === "hoy") render();
+});
+window.addEventListener("appinstalled", () => {
+  inst.instalada = true; inst.evento = null;
+  toast("Instalada. Ábrela desde tu pantalla de inicio.");
+  render();
+});
+
+/* ==================================================================
+   SERVICE WORKER — es lo que hace que funcione sin internet
+   ================================================================== */
+if("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").then(reg => {
+      reg.addEventListener("updatefound", () => {
+        const nuevo = reg.installing;
+        if(!nuevo) return;
+        nuevo.addEventListener("statechange", () => {
+          if(nuevo.state === "installed" && navigator.serviceWorker.controller){
+            toast("Hay una versión nueva.", { txt:"Actualizar", fn:() => {
+              nuevo.postMessage("saltar");
+              location.reload();
+            }});
+          }
+        });
+      });
+    }).catch(() => {});
+  });
+}
+
+render();
+</script>
+</body>
+</html>
